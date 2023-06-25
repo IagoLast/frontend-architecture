@@ -1,0 +1,24 @@
+{
+	"recommendations": [
+		"bierner.markdown-mermaid",
+		"cpylua.language-postcss",
+		"dbaeumer.vscode-eslint",
+		"eamodio.gitlens",
+		"EditorConfig.EditorConfig",
+		"esbenp.prettier-vscode",
+		"formulahendry.auto-rename-tag",
+		"GitHub.copilot",
+		"Gruntfuggly.todo-tree",
+		"johnpapa.vscode-peacock",
+		"marp-team.marp-vscode",
+		"mattpocock.ts-error-translator",
+		"ms-playwright.playwright",
+		"ms-vsliveshare.vsliveshare-pack",
+		"ms-vsliveshare.vsliveshare",
+		"redhat.vscode-yaml",
+		"streetsidesoftware.code-spell-checker",
+		"stylelint.vscode-stylelint",
+		"unifiedjs.vscode-mdx",
+		"ZixuanChen.vitest-explorer"
+	]
+}

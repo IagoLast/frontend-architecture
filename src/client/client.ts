@@ -1,0 +1,30 @@
+import axios from 'axios';
+
+/**
+ * Singleton to make requests to the server
+ */
+const client = axios.create({
+	baseURL: '',
+	headers: {},
+});
+
+/**
+ * Add a request interceptor to add the token to the headers
+ */
+client.interceptors.request.use(
+	(config) => {
+		const token = localStorage.getItem('token');
+		// const token = `eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJhZ1dFRko2cENVN0FJX2NLYlF5c3RUUjVxWE5pcGR6VTdLUEgwT0R2bDhrIn0.eyJleHAiOjE2ODczMzA5MTcsImlhdCI6MTY4NzMzMDYxNywiYXV0aF90aW1lIjoxNjg3MzMwNTY0LCJqdGkiOiJiYTVlYzRkNy1mMDgzLTQ3ZjctODQ5OC1jNDBiOTYxMTJmNTEiLCJpc3MiOiJodHRwczovL2Rldi5xZW50YS5jb20vYXV0aC9yZWFsbXMvcWVudGEiLCJhdWQiOlsicGF5YnlsaW5rIiwicG9ydGFsIiwiYWNjb3VudCJdLCJzdWIiOiI5YzFlMmU1ZS02YjBmLTQwYTUtODQ0MC1hNGFmMDI3Yjc1NzQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJpc3N1aW5nLW9wZXJhdGlvbnMtdWkiLCJzZXNzaW9uX3N0YXRlIjoiNmM0Y2E1ZDktNGJiNi00NjI5LThlNjAtMzYxNTdjNWVhMjgzIiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1xZW50YSJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InBheWJ5bGluayI6eyJyb2xlcyI6WyJwYXlieWxpbmstYWNjZXNzIl19LCJpc3N1aW5nLW9wZXJhdGlvbnMtdWkiOnsicm9sZXMiOlsiaXNzdWluZy1hZG1pbiJdfSwicG9ydGFsIjp7InJvbGVzIjpbImlzc3VpbmctYWRtaW4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJzaWQiOiI2YzRjYTVkOS00YmI2LTQ2MjktOGU2MC0zNjE1N2M1ZWEyODMiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IklhZ28gTGFzdHJhIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiaWFnb2xhc3QiLCJnaXZlbl9uYW1lIjoiSWFnbyIsImZhbWlseV9uYW1lIjoiTGFzdHJhIiwiZW1haWwiOiJpYWdvLmxhc3RyYUBxZW50YS5jb20ifQ.CIoCZhHylthpxmKanm5DgaTckm7CKAzp2T9DOJW9LST5lijn-yBhoV6gYwulJ28n8pB2NKOR1JNF4W6k1XjGjmA9zAG7CQ9k5rLggFI_Yfo9r1kpSO1mZkV0s2nABlGzho96IvBI3FJSju4ybsL78T0hFYunowZGXQK8KJVV8AZmLyv0N-UIix4BtUebcPs3mvwa-33KSL0bTI0lDcDU3ma9rDawXRxWaz-Rt6IjChoJQbdxfKTNSfQfXKpIq-bTc-IjO7LYhnG9BO8f_sIaAH12ET-LfaIJrdxnIeuezJLA2Jlw7mzF66VGx0xozeJHaeiB5j98GYtf8GqwKaidXg`;
+
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+
+		return config;
+	},
+	(error) => {
+		return Promise.reject(error);
+	}
+);
+
+export default client;
