@@ -5,4 +5,8 @@ export const todoHandler = [
 	rest.get('/todos', (_, res, ctx) => {
 		return res(ctx.json(list_todo_response), ctx.delay(200));
 	}),
+
+	rest.put('/todos/:id', (_, res, ctx) => {
+		return res(ctx.json({}), ctx.delay(200));
+	}),
 ];

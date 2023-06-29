@@ -6,7 +6,7 @@ import { router } from './router';
 
 export default function App() {
 	return (
-		<ChakraProvider>
+		<ChakraProvider toastOptions={{ defaultOptions: { position: 'bottom-right' } }}>
 			<QueryClientProvider client={queryClient}>
 				<RouterProvider router={createBrowserRouter(router)} />
 			</QueryClientProvider>
