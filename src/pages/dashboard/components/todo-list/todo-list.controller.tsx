@@ -1,7 +1,8 @@
 import { useListTodos } from '@/queries/todo.queries';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigation, useSearchParams } from 'react-router-dom';
 
 export function useTodoList() {
+	const navigation = useNavigation();
 	const listTodosQuery = useListTodos();
 	const [searchParams, setSearchParams] = useSearchParams();
 
@@ -19,5 +20,6 @@ export function useTodoList() {
 		handleCloseModal,
 		isCreateModalOpen: searchParams.get('showCreateModal') === 'true',
 		listTodosQuery,
+		navigation,
 	};
 }

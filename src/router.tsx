@@ -4,7 +4,7 @@ import { dashboardRoute } from './pages/dashboard/dashboard.route';
 
 export const router: RouteObject[] = [
 	{
-		Component: () => <></>,
+		index: true,
 		path: '/',
 		loader() {
 			return redirect('/dashboard');

@@ -1,4 +1,4 @@
-import IListTodoResponse from '@/types/server/IListTodoResponse';
+import { IListTodoResponse } from '@/types/server/todos';
 
 export const list_todo_response: IListTodoResponse = {
 	todos: [
