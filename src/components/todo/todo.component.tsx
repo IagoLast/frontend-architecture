@@ -20,6 +20,7 @@ export default function Todo(props: ITodoProps) {
 			onClick={() => {
 				navigate({ pathname: TODO_DETAILS_ROUTE.replace(':id', props.todo.id) });
 			}}
+			textDecoration={props.todo.completed ? 'line-through' : 'none'}
 		>
 			<CardHeader>
 				<Heading size="md" textTransform="uppercase">

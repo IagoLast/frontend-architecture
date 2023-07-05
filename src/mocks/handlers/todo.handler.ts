@@ -1,17 +1,31 @@
-import { list_todo_response } from '@/mocks/server_dummies/todo/list_todo.response';
+import ITodo from '@/types/ITodo';
 import { rest } from 'msw';
-import { get_todo_response } from '../server_dummies/todo/get_todo.reponse';
+import dummyTodoServer from './dummy-todo-server';
 
 export const todoHandler = [
-	rest.get('/todos', (_, res, ctx) => {
-		return res(ctx.json(list_todo_response), ctx.delay(2000));
+	rest.get('/todos', async (_, res, ctx) => {
+		const todos = await dummyTodoServer.listTodos();
+		return res(ctx.json({ todos }));
 	}),
 
-	rest.get('/todos/:id', (_, res, ctx) => {
-		return res(ctx.json(get_todo_response), ctx.delay(500));
+	rest.get('/todos/:id', async (req, res, ctx) => {
+		const todo = await dummyTodoServer.getTodo(req.params['id'] as string);
+		if (!todo) {
+			return res(ctx.status(404));
+		}
+		return res(ctx.json({ todo }));
 	}),
 
-	rest.put('/todos/:id', (_, res, ctx) => {
-		return res(ctx.json({}), ctx.delay(500));
+	rest.put('/todos/:id', async (req, res, ctx) => {
+		const body = await (req.json() as Promise<ITodo>);
+
+		dummyTodoServer.updateTodo({
+			id: body.id,
+			completed: body.completed,
+			description: body.description,
+			title: body.title,
+		});
+
+		return res(ctx.json({}), ctx.delay(200));
 	}),
 ];
